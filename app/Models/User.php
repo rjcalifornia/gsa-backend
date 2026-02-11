@@ -21,11 +21,14 @@ class User extends Authenticatable
         'name',
         'lastname',
         'username',
+        'team_code',
         'email',
         'password',
         'rol_id',
         'is_admin',
         'active',
+        'user_creates',
+        'user_modifies'
     ];
 
     /**
@@ -48,6 +51,10 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'rol_id' => 'integer', 
+            'active' => 'integer', 
+            'user_creates' => 'integer',
+            'user_modifies' => 'integer',
         ];
     }
 }
