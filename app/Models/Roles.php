@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+ 
 
 class Roles extends Model
 {
@@ -36,6 +38,16 @@ class Roles extends Model
             'user_modifies' => 'integer',
         ];
     }
+
+      /**
+     * The permissions that belong to the role.
+     */
+    public function permissions(): BelongsToMany
+    {
+        return $this->belongsToMany(Permissions::class, 'role_permission', 'role_id', 'permission_id')
+                    ->withTimestamps();
+    }
+
 
 
 }

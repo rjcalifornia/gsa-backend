@@ -1,12 +1,16 @@
 <?php
+namespace App\Http\Controllers\api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
 use App\Services\UserService;
+use App\Models\User;
+
+
 
 class ApiAuthController
 {
@@ -40,6 +44,15 @@ class ApiAuthController
 
         // Return the token as a response
         return response()->json(['access_token' => $token,  'user' => $user], 200);
+    }
+
+
+      public function logout(){
+        $user = Auth::user();
+
+        /** @var \Laravel\Sanctum\HasApiTokens $user */
+        $user->currentAccessToken()?->delete();
+        return response()->json(['mensaje' => 'La sesion ha sido cerrada correctamente'], 201);
     }
 
 
