@@ -20,8 +20,14 @@ class Team extends Authenticatable
         'is_manager',
     ];
 
+     protected $hidden = [
+        'pin',
+        'remember_token',
+    ];
+
+
     protected $casts = [
-        'pin' => 'integer',
+        'pin' => 'string',
         'active' => 'boolean',
         'is_manager' => 'boolean',
     ];
