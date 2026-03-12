@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use App\Services\UserService;
-use App\Models\User;
+use App\Models\Team;
 
 
 
@@ -22,27 +22,24 @@ class ApiAuthController
     }
 
     public function login(Request $request){
-        $validator = Validator::make($request->all(),[
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+       $validator = Validator::make($request->all(), [
+        'team_name' => 'required|string',
+        'pin' => 'required|string',
+    ]);
+
 
         if ($validator->fails()) {
             return response()->json(['mensaje' => 'No se puede procesar la solicitud. Faltan campos'], 422);
         }
+         
+        $user = Team::with(['rol'])->where('team_name', $request->team_name)->where('pin', $request->pin)->where('active', true)->first();
 
-        // Retrieve the user from the database based on the username
-        $user = User::with(['rol'])->where('username', $request->username)->where('active', true)->first();
-
-        // If the user is not found or the password is incorrect, return an error
         if (! $user || ! password_verify($request->password, $user->password)) {
             return response()->json(['message' => 'Verifique los datos ingresados e intente nuevamente'], 401);
         }
 
-        // Generate a token using Sanctum
         $token = $user->createToken('auth_token', ['server:landlord'])->plainTextToken;
 
-        // Return the token as a response
         return response()->json(['access_token' => $token,  'user' => $user], 200);
     }
 

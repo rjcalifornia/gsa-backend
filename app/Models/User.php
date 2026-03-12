@@ -22,11 +22,9 @@ class User extends Authenticatable
         'name',
         'lastname',
         'username',
-        'team_code',
         'email',
         'password',
         'rol_id',
-        'is_admin',
         'active',
         'user_creates',
         'user_modifies'
