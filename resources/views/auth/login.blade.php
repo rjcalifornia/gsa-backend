@@ -47,22 +47,22 @@
                             <div class="app-logo"></div>
                             <h4 class="mb-0">
                                 <span class="d-block">Bienvenido</span>
-                                <span>Ingrese su usario y su clave</span>
+                                <span>Ingrese sus credenciales</span>
                             </h4>
                             
                             <div class="divider row"></div>
                             <div>
-                                <form class="">
+                                <form class="" id="loginForm" method="POST" action="{{ route('authenticate') }}">
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="position-relative form-group"><label for="exampleEmail"
-                                                    class="">Usuario</label><input name="email" id="exampleEmail"
-                                                    placeholder="Email here..." type="email" class="form-control"></div>
+                                                    class="">Usuario</label><input name="username" id="username"
+                                                    placeholder="Ingrese su usuario..." type="text" class="form-control"></div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="position-relative form-group"><label for="examplePassword"
-                                                    class="">Clave</label><input name="password" id="examplePassword"
-                                                    placeholder="Password here..." type="password" class="form-control">
+                                                    class="">Clave</label><input name="password" id="password"
+                                                    placeholder="Ingrese su clave..." type="password" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -71,9 +71,8 @@
                                             class="form-check-label">Mantenerme conectado</label></div>
                                     <div class="divider row"></div>
                                     <div class="d-flex align-items-center">
-                                        <div class="ml-auto"><a href="javascript:void(0);"
-                                                class="btn-lg btn btn-link">Recover Password</a>
-                                            <button class="btn btn-primary btn-lg">Login to Dashboard</button>
+                                        <div class="ml-auto">
+                                            <button class="btn btn-primary btn-lg">Ingresar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -95,16 +94,53 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
 
-
-    <!--Perfect Scrollbar -->
-    <script src="../assets/js/vendors/scrollbar.js"></script>
-    <script src="../assets/js/scripts-init/scrollbar.js"></script>
-
+ 
 
 
     <!--SweetAlert2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="../assets/js/scripts-init/sweet-alerts.js"></script>
+
+     <script>
+        const headers = {
+          "Content-Type": "application/json",
+          "Accept": "application/json, text-plain, */*",
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRF-TOKEN": $("#token").val(),
+        };
+
+        $("#loginForm").on('submit', function (event) {
+            event.preventDefault();
+            console.log('test');
+            const urlReset = $("#loginForm").attr('action');
+          const params = {
+            'email': $("#email").val(),
+            'password': $("#password").val(),
+
+          };
+          const loading = Swal.fire(loadingSwalObject);
+          fetch(urlReset, {
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify(params),
+          })
+          .then(response => {
+            return response.json();
+          })
+          .then(jsonResponse => {
+            if (jsonResponse.errors) {
+              showFormErrors(jsonResponse.errors);
+            } else {
+                showSucessMessageWithTimeout(jsonResponse.msg, 1.4)
+                .then(() => location.replace(jsonResponse.url));
+            }
+          })
+          .catch(error => showGenericError(error))
+          .finally(() => loading.close());
+        });
+
+        </script>
+     
 
 
 </body>
