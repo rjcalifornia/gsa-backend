@@ -51,7 +51,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'rol_id' => 'integer', 
-            'active' => 'integer', 
+            'active' => 'boolean', 
             'user_creates' => 'integer',
             'user_modifies' => 'integer',
         ];

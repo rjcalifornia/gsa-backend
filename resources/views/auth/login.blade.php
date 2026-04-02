@@ -53,6 +53,7 @@
                             <div class="divider row"></div>
                             <div>
                                 <form class="" id="loginForm" method="POST" action="{{ route('authenticate') }}">
+                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}" />
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="position-relative form-group"><label for="exampleEmail"
@@ -98,8 +99,11 @@
 
 
     <!--SweetAlert2-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="../assets/js/scripts-init/sweet-alerts.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+
+    <script src="{{ asset('assets/js/loadingObject.js') }}"></script>
+    <script src="{{ asset('assets/js/handleResponse.js') }}"></script>
+
 
      <script>
         const headers = {
@@ -114,7 +118,7 @@
             console.log('test');
             const urlReset = $("#loginForm").attr('action');
           const params = {
-            'email': $("#email").val(),
+            'username': $("#username").val(),
             'password': $("#password").val(),
 
           };
