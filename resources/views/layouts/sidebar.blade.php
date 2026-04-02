@@ -504,25 +504,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="app-sidebar__heading">Charts</li>
-                            <li>
-                                <a href="chartjs.html">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>ChartJS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="apexcharts.html">
-                                    <i class="metismenu-icon pe-7s-graph">
-                                    </i>Apex Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sparklines.html">
-                                    <i class="metismenu-icon pe-7s-graph1">
-                                    </i>Chart Sparklines
-                                </a>
-                            </li>
+                             
                         </ul>
                     </div>
                 </div>

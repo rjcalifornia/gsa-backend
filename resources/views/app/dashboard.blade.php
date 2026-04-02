@@ -3,6 +3,10 @@
 Inicio
 @endsection
 
+@section('section-title')
+Bienvenido
+@endsection
+
 
 @section('content')
 
