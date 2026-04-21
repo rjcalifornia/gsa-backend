@@ -9,11 +9,20 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-   public function list()
+   public function listCategories()
     {
         $data = Categories::all();
         Log::info("Categorias");
         Log::info($data);
         return view('app/catalogs/categories/list');
+    }
+
+    public function addCategory(Request $request)
+    {
+        $category = new Categories();
+        $category->name = $request->name; 
+        $category->save();
+
+        return redirect()->route('listCategories');
     }
 }

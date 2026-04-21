@@ -23,5 +23,6 @@ Route::prefix('/')->group(function () {
 });
 
 Route::prefix('/catalogos')->group(function () {
-    Route::get('categorias', [CatalogController::class, 'list'])->name('categoryList')->middleware('auth');
+    Route::get('categorias', [CatalogController::class, 'listCategories'])->name('listCategories')->middleware('auth');
+    Route::post('categorias', [CatalogController::class, 'addCategory'])->name('addCategory')->middleware('auth');
 });

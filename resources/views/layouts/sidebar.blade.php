@@ -42,7 +42,7 @@
                               {{--   <ul class="mm-show">--}}
                                 <ul >
                                     <li>
-                                        <a href="{{ route('categoryList') }}">
+                                        <a href="{{ route('listCategories') }}">
                                             <i class="metismenu-icon">
                                             </i>Categorias
                                         </a>
