@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\main\CatalogController;
 use App\Http\Controllers\main\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +20,8 @@ Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'main'])->name('homepage')->middleware('auth');
+});
+
+Route::prefix('/catalogos')->group(function () {
+    Route::get('categorias', [CatalogController::class, 'list'])->name('categoryList')->middleware('auth');
 });

@@ -32,29 +32,32 @@
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
                         <ul class="vertical-nav-menu">
-                            <li class="app-sidebar__heading">Menu</li>
-                            <li class="mm-active">
+                            <li class="app-sidebar__heading">General</li>
+                            <li >
+                        {{--         <li class="mm-active">--}}
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-rocket"></i> Dashboards
+                                    <i class="metismenu-icon pe-7s-rocket"></i> Catalogos
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
-                                <ul class="mm-show">
+                              {{--   <ul class="mm-show">--}}
+                                <ul >
                                     <li>
-                                        <a href="analytics.html">
+                                        <a href="{{ route('categoryList') }}">
                                             <i class="metismenu-icon">
-                                            </i>Analytics
+                                            </i>Categorias
                                         </a>
                                     </li>
                                     <li>
                                         <a href="commerce.html">
                                             <i class="metismenu-icon">
-                                            </i>Commerce
+                                            </i>Unidades
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="sales.html" class="mm-active">
+                                        {{--<a href="sales.html" class="mm-active"> --}}
+                                            <a href="sales.html" >
                                             <i class="metismenu-icon">
-                                            </i>Sales
+                                            </i>Productos
                                         </a>
                                     </li>
                                     <li>
@@ -153,7 +156,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="app-sidebar__heading">UI Components</li>
+                            <li class="app-sidebar__heading">Ventas</li>
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-diamond"></i> Elements
@@ -390,7 +393,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="app-sidebar__heading">Dashboard Widgets</li>
+                            <li class="app-sidebar__heading">Administracion</li>
                             <li>
                                 <a href="chart-boxes.html">
                                     <i class="metismenu-icon pe-7s-graph">
@@ -412,7 +415,7 @@
                             <li>
                                 <a href="profile-boxes.html">
                                     <i class="metismenu-icon pe-7s-id">
-                                    </i>Profile Boxes
+                                    </i>Usuarios
                                 </a>
                             </li>
                             <li class="app-sidebar__heading">Forms</li>
